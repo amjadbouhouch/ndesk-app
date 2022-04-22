@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Header = () => {
+const PageHeader = () => {
   return (
-    <div className="navbar bg-base-100">
+    <div className="border-b navbar bg-base-100 border-base-200">
       <div className="flex-none">
         <label
           htmlFor="my-drawer-2"
@@ -28,6 +28,9 @@ const Header = () => {
           <ul>
             <li>
               <a>Home</a>
+            </li>
+            <li>
+              <a>New</a>
             </li>
           </ul>
         </div>
@@ -70,4 +73,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default PageHeader

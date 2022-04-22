@@ -1,8 +1,7 @@
 import React, { Suspense } from 'react'
 import { Route, Switch, useRouteMatch } from 'react-router-dom'
-import Header from './Layouts/Header'
 import SideBar from './Layouts/SideBar'
-import PageContent from './pageContent'
+import Page from './Page'
 
 const MainApp = () => {
   const { url } = useRouteMatch()
@@ -11,15 +10,17 @@ const MainApp = () => {
     <div className="w-screen overflow-hidden drawer drawer-mobile">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="flex flex-col w-full h-screen overflow-hidden grow drawer-content">
-        <Header />
         <div className="h-full overflow-auto">
           <Suspense fallback={null}>
             <Switch>
               <Route path={url} exact>
                 <div />
               </Route>
+              <Route path={`${url}/new`}>
+                <Page />
+              </Route>
               <Route path={`${url}/:id`}>
-                <PageContent />
+                <Page />
               </Route>
             </Switch>
           </Suspense>

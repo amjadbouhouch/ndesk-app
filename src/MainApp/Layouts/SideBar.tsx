@@ -1,17 +1,12 @@
 import { usePortal } from 'hooks/usePortal'
 import React, { useState } from 'react'
 import { FaPlus } from 'react-icons/fa'
-import { Link, useRouteMatch } from 'react-router-dom'
-// import { usePages } from 'renderer/stores/store'
-// import { observerWrapper } from 'renderer/utils/heplers'
-// import { usePortal } from '../../hooks/usePortal'
-// import CreatePageForm from './CreatePageForm'
+import { Link, useHistory, useRouteMatch } from 'react-router-dom'
 
 const SideBar = () => {
-  // const pages = usePages()
-
   const { url } = useRouteMatch()
-  const { closePortal, isOpen, openPortal } = usePortal()
+  const history = useHistory()
+  const navigateToNewPage = () => history.push(`/app/new`)
   return (
     <div className="drawer-side">
       <label htmlFor="my-drawer-2" className="drawer-overlay" />
@@ -21,7 +16,10 @@ const SideBar = () => {
           <Link to="/app" className="text-xl normal-case btn btn-ghost">
             Ndesk v0.0.1
           </Link>
-          <button onClick={openPortal} className="btn btn-square btn-ghost">
+          <button
+            onClick={navigateToNewPage}
+            className="btn btn-square btn-ghost"
+          >
             <FaPlus className="w-5 h-5" />
           </button>
         </div>
@@ -52,7 +50,7 @@ const SideBar = () => {
 }
 
 const ThemeChanger = () => {
-  const [isDarkModeEnabled, setIsDarkModeEnabled] = useState(false)
+  const [isDarkModeEnabled, setIsDarkModeEnabled] = useState(true)
   const toggleDarkMode = () => {
     const prevTheme = isDarkModeEnabled ? 'dark' : 'light'
     document
