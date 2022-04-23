@@ -3,7 +3,7 @@ import PouchDb from 'pouchdb'
 
 type OnChangeType = (change: any) => void
 // create class pouchdb with all the methods
-export class PouchDatabase {
+export class DatabaseService {
   private _db: PouchDB.Database<IPage>
 
   constructor(dbName: string) {
@@ -45,12 +45,18 @@ export class PouchDatabase {
   }
 
   // get all documents from the database
-  public async getAllDocuments() {
-    const result = await this._db.allDocs({ include_docs: true })
-    return result.rows || []
+  public async getAllDocuments(): Promise<IPage[]> {
+    try {
+      const result = await this._db.allDocs({ include_docs: true })
+      const pages = result.rows.map((row) => row.doc)
+      return pages as IPage[]
+    } catch (error) {
+      return []
+    }
   }
 
   // update a document in the database
+  // update doc with _rev
   public updateDocument(doc: any) {
     return this._db.put(doc)
   }

@@ -1,6 +1,9 @@
 import React from 'react'
+import { useSelectedPage } from 'store'
 
 const PageHeader = () => {
+  const selectedPage = useSelectedPage().get()
+
   return (
     <div className="border-b navbar bg-base-100 border-base-200">
       <div className="flex-none">
@@ -30,7 +33,7 @@ const PageHeader = () => {
               <a>Home</a>
             </li>
             <li>
-              <a>New</a>
+              <a>{selectedPage?.title || 'New page'}</a>
             </li>
           </ul>
         </div>

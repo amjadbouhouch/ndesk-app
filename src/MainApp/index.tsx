@@ -16,9 +16,6 @@ const MainApp = () => {
               <Route path={url} exact>
                 <div />
               </Route>
-              <Route path={`${url}/new`}>
-                <Page />
-              </Route>
               <Route path={`${url}/:id`}>
                 <Page />
               </Route>

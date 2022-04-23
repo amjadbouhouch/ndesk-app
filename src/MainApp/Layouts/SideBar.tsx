@@ -1,12 +1,18 @@
-import { usePortal } from 'hooks/usePortal'
+import { State } from '@hookstate/core'
+import { IPage } from 'models/IPage'
 import React, { useState } from 'react'
 import { FaPlus } from 'react-icons/fa'
-import { Link, useHistory, useRouteMatch } from 'react-router-dom'
+import { Link, NavLink, useHistory, useRouteMatch } from 'react-router-dom'
+import { storeActions, usePages } from 'store'
 
 const SideBar = () => {
   const { url } = useRouteMatch()
+  const pages = usePages()
   const history = useHistory()
-  const navigateToNewPage = () => history.push(`/app/new`)
+  const navigateToNewPage = async () => {
+    const pageId = await storeActions.createDraft()
+    if (pageId) history.push(`/app/${pageId}`)
+  }
   return (
     <div className="drawer-side">
       <label htmlFor="my-drawer-2" className="drawer-overlay" />
@@ -28,27 +34,30 @@ const SideBar = () => {
             <CreatePageForm closePortal={closePortal} />
           </div>
         )} */}
-        {/*  {pages.map((page, index) => {
-          const doc = page.doc.get()
-          return (
-            <li key={doc._id}>
-              <NavLink
-                // activeClassName="text-white"
-                style={{ textDecoration: 'none' }}
-                to={`${url}/${doc._id}`}
-                className="normal-case"
-              >
-                {doc.title}
-              </NavLink>
-            </li>
-          )
-        })} */}
+        {pages.map((page, index) => {
+          return <PageLinkItem key={page._id.get()} page={page} />
+        })}
         <ThemeChanger />
       </ul>
     </div>
   )
 }
-
+const PageLinkItem = ({ page }: { page: State<IPage> }) => {
+  const { _id, title } = page.get()
+  const { url } = useRouteMatch()
+  return (
+    <li key={_id}>
+      <NavLink
+        // activeClassName="text-white"
+        style={{ textDecoration: 'none' }}
+        to={`${url}/${_id}`}
+        className="normal-case"
+      >
+        {title}
+      </NavLink>
+    </li>
+  )
+}
 const ThemeChanger = () => {
   const [isDarkModeEnabled, setIsDarkModeEnabled] = useState(true)
   const toggleDarkMode = () => {
