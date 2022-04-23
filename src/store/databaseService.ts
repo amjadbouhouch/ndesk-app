@@ -18,7 +18,9 @@ export class DatabaseService {
         include_docs: true
       })
       .on('change', onChange)
-      .on('complete', function (info) {})
+      .on('complete', function (info) {
+        console.log('complete')
+      })
       .on('error', function (err) {
         console.log(err)
       })
@@ -69,10 +71,10 @@ export class DatabaseService {
   // delete all documents from the database
   public deleteAllDocuments() {
     return this._db.allDocs({ include_docs: true }).then((docs) => {
-      const docsToDelete = docs.rows.map((row) => {
-        return this._db.remove(row.doc)
-      })
-      return Promise.all(docsToDelete)
+      // const docsToDelete = docs.rows.map((row) => {
+      //   return this._db.remove(row.doc)
+      // })
+      // return Promise.all(docsToDelete)
     })
   }
 }

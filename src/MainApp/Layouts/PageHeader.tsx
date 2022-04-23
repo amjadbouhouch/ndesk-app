@@ -47,14 +47,14 @@ const PageHeader = () => {
           />
         </div>
         <div className="dropdown dropdown-end">
-          <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
+          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full ring ring-offset-2 ring-primary ring-offset-base-100">
               <img src="https://ui-avatars.com/api/?background=0D8ABC&color=fff&rounded=true" />
             </div>
           </label>
 
           <ul
-            tabIndex="0"
+            tabIndex={0}
             className="p-2 mt-3 shadow w-52 menu menu-compact dropdown-content bg-base-100 rounded-box"
           >
             <li>

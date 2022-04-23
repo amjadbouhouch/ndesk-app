@@ -96,12 +96,12 @@ const storeActions = {
       clearTimeout(timeout)
     }
 
-    store.selectedPage.set((p) => ({ ...p, title: title }))
+    store.selectedPage.set((p) => ({ ...p, title: title } as IPage))
     timeout = setTimeout(async () => {
       const document = store.selectedPage.get()
       const { rev } = await db.updateDocument(document)
 
-      store.selectedPage.set((p) => ({ ...p, _rev: rev }))
+      store.selectedPage.set((p) => ({ ...p, _rev: rev } as IPage))
     }, 1000)
   }
 }
