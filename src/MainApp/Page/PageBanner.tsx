@@ -4,7 +4,7 @@ import EditableTitle from '../../components/Editor/EditableTitle'
 
 const PageBanner = () => {
   const selectedPage = useSelectedPage().get()
-  console.log(selectedPage)
+
   const onTitleChange = (title: string) =>
     storeActions.updateCurrentPageTitle(title)
   return (
