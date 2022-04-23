@@ -16,7 +16,7 @@ const Page = () => {
     <div className="flex flex-col h-screen">
       <PageHeader />
       <PageBanner />
-      <div className="overflow-y-auto">
+      <div className="p-2 overflow-y-auto">
         <Editor />
       </div>
     </div>

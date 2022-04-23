@@ -9,14 +9,16 @@ type IState = {
   pages: IPage[]
   selectedPage?: IPage
 }
-const state = createState<IState>({
+const store = createState<IState>({
   pages: []
 })
+let timeout: any = null
 // const page = generateEmptyPage()
 // helpers
 const watch = (changes) => {
-  const newPage = changes.doc as IPage
-  state.pages.set((prev) => [...prev, newPage])
+  // const newPage = changes.doc as IPage
+  // store.pages.set((prev) => [...prev, newPage])
+  storeActions.getAllPages()
 }
 // later we will use this to unsubscribe from changes
 const unsubscribe = db.watchChanges(watch)
@@ -27,7 +29,7 @@ const storeActions = {
     try {
       const retrievedPages = await db.getAllDocuments()
 
-      state.pages.set(retrievedPages)
+      store.pages.set(retrievedPages)
     } catch (error) {
       console.log(error)
     }
@@ -61,7 +63,7 @@ const storeActions = {
         return
       }
       const page = await db.getDocument(pageId)
-      state.selectedPage.set(page)
+      store.selectedPage.set(page)
     } catch (error) {
       console.log(error)
     }
@@ -88,12 +90,25 @@ const storeActions = {
     // } catch (error) {
     //   // console.log(error);
     // }
+  },
+  updateCurrentPageTitle: async (title: string) => {
+    if (timeout) {
+      clearTimeout(timeout)
+    }
+
+    store.selectedPage.set((p) => ({ ...p, title: title }))
+    timeout = setTimeout(async () => {
+      const document = store.selectedPage.get()
+      const { rev } = await db.updateDocument(document)
+
+      store.selectedPage.set((p) => ({ ...p, _rev: rev }))
+    }, 1000)
   }
 }
 storeActions.getAllPages()
 
 // hooks
-const usePages = () => useState<IPage[]>(state.pages)
-const useSelectedPage = () => useState(state.selectedPage)
+const usePages = () => useState<IPage[]>(store.pages)
+const useSelectedPage = () => useState(store.selectedPage)
 
-export { usePages, useSelectedPage, storeActions }
+export { usePages, useSelectedPage, storeActions, store }

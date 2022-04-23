@@ -25,6 +25,7 @@
     "pouchdb": "^7.3.0",
     "pouchdb-browser": "^7.3.0",
     "react": "^18.0.0",
+    "react-contenteditable": "^3.3.6",
     "react-dom": "^18.0.0",
     "react-router-dom": "^5.2.0",
     "valtio": "^1.6.0"

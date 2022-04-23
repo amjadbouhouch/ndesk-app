@@ -33,7 +33,7 @@ const PageHeader = () => {
               <a>Home</a>
             </li>
             <li>
-              <a>{selectedPage?.title || 'New page'}</a>
+              <a>{selectedPage?.title || 'Untitled'}</a>
             </li>
           </ul>
         </div>

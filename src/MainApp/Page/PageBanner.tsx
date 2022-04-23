@@ -1,11 +1,14 @@
-import Editor from 'components/Editor'
 import React from 'react'
-import { useSelectedPage } from 'store'
+import { storeActions, useSelectedPage } from 'store'
+import EditableTitle from '../../components/Editor/EditableTitle'
 
 const PageBanner = () => {
   const selectedPage = useSelectedPage().get()
+  console.log(selectedPage)
+  const onTitleChange = (title: string) =>
+    storeActions.updateCurrentPageTitle(title)
   return (
-    <div className="">
+    <>
       <div className="relative h-48 bg-red-200">
         <img
           loading="lazy"
@@ -16,11 +19,24 @@ const PageBanner = () => {
           <button className="btn btn-sm">Change cover</button>
         </div>
       </div>
-      <div className="px-6 pt-6 space-y-2">
-        <h1 className="text-3xl">{selectedPage?.title}</h1>
-        <p className="text-sm">{selectedPage?.description}</p>
-      </div>
-    </div>
+      {selectedPage && (
+        <div className="mx-6 mt-2 space-y-2 prose-sm prose">
+          <input
+            className="text-3xl bg-transparent appearance-none outline-0"
+            placeholder={'Untitled'}
+            value={selectedPage.title}
+            onChange={(e) => onTitleChange(e.target.value)}
+          />
+          {/* <EditableTitle
+            content={selectedPage.title as string}
+            handleChange={onTitleChange}
+            handleOnBlur={() => {}}
+            onKeyDown={() => {}}
+          /> */}
+          <p className="text-sm">{selectedPage?.description}</p>
+        </div>
+      )}
+    </>
   )
 }
 

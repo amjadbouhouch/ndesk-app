@@ -1,4 +1,3 @@
-import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
 import Link from '@tiptap/extension-link'
 import TaskItem from '@tiptap/extension-task-item'
 import TaskList from '@tiptap/extension-task-list'
@@ -10,7 +9,6 @@ import { htmlToMarkdown } from 'components/Editor/helpers/turndown'
 import React from 'react'
 import { PlaceholderPlugin } from './plugins'
 import { Popover } from './Popover'
-import { useParams } from 'react-router-dom'
 // import { pageStore, useCurrentPage } from 'renderer/stores/store'
 
 // import { Toolbar } from './Toolbar';
@@ -113,8 +111,7 @@ EditorProps) => {
     },
     editorProps: {
       attributes: {
-        class:
-          'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl m-5 focus:outline-none'
+        class: 'prose prose-sm sm:prose mx-6 focus:outline-none'
       }
     }
   })
