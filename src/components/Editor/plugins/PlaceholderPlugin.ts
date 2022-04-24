@@ -1,14 +1,10 @@
 import Placeholder from '@tiptap/extension-placeholder'
-
+import './placeholder.css'
 export const PlaceholderPlugin = Placeholder.configure({
   placeholder: ({ node }) => {
-    if (node.type.name === 'heading') {
-      return 'What’s the title?'
-    }
-
     return `Type '/' for actions…`
   },
-  showOnlyWhenEditable: false,
+  showOnlyWhenEditable: true,
   includeChildren: true,
-  showOnlyCurrent: false
+  showOnlyCurrent: true
 })

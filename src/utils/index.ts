@@ -6,20 +6,11 @@ export function classNames(...classes: unknown[]): string {
 }
 export const generatePageId = (title = '') => `${slugify(title)}-${nanoid()}`
 
-export const generateFakePages = () => {
-  const pages = ['page 1', 'hello world']
-  return pages.map((title) => ({
-    title,
-    description: `${title} description`,
-    _id: generatePageId(title),
-    content: `<p> ${title} hello  </p>`
-  }))
-}
-export const generateEmptyPage = (title = 'untitled'): IPage => {
+export const generateEmptyPage = (title = 'hello'): IPage => {
   const uniqueId = generatePageId(title)
   return {
     title,
-    description: `add description...`,
+    description: ``,
     _id: uniqueId,
     content: ``,
     url: uniqueId,

@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react-lite'
 import React, { Suspense } from 'react'
 import { Route, Switch, useRouteMatch } from 'react-router-dom'
 import SideBar from './Layouts/SideBar'
@@ -13,7 +14,7 @@ const MainApp = () => {
         <div className="h-full overflow-auto">
           <Suspense fallback={null}>
             <Switch>
-              <Route path={url} exact>
+              <Route exact path={url}>
                 <div />
               </Route>
               <Route path={`${url}/:id`}>
@@ -28,4 +29,4 @@ const MainApp = () => {
   )
 }
 
-export default MainApp
+export default observer(MainApp)

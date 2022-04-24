@@ -111,7 +111,7 @@ EditorProps) => {
     },
     editorProps: {
       attributes: {
-        class: 'prose prose-sm sm:prose mx-6 focus:outline-none'
+        class: 'prose prose-sm sm:prose px-4 focus:outline-none'
       }
     }
   })

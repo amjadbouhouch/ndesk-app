@@ -1,9 +1,9 @@
+import { useStore } from 'hooks/useStore'
+import { observer } from 'mobx-react-lite'
 import React from 'react'
-import { useSelectedPage } from 'store'
 
 const PageHeader = () => {
-  const selectedPage = useSelectedPage().get()
-
+  const page = useStore('pagesStore').selectedPage
   return (
     <div className="border-b navbar bg-base-100 border-base-200">
       <div className="flex-none">
@@ -33,7 +33,7 @@ const PageHeader = () => {
               <a>Home</a>
             </li>
             <li>
-              <a>{selectedPage?.title || 'Untitled'}</a>
+              <a>{page?.title || 'Untitled'}</a>
             </li>
           </ul>
         </div>
@@ -76,4 +76,4 @@ const PageHeader = () => {
   )
 }
 
-export default PageHeader
+export default observer(PageHeader)
