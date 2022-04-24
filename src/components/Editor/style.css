@@ -1,0 +1,17 @@
+/* .ProseMirror p.is-editor-empty:first-child::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+} */
+
+.floating-menu {
+  @apply flex space-x-2;
+}
+.floating-menu > button {
+  @apply btn-xs btn-outline btn-ghost px-2 rounded-md;
+}
+.floating-menu .is-active {
+  @apply btn-active;
+}

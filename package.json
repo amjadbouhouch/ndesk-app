@@ -21,6 +21,7 @@
     "lint": "eslint src --max-warnings=0"
   },
   "dependencies": {
+    "@tiptap/extension-floating-menu": "^2.0.0-beta.50",
     "@types/lowlight": "^0.0.3",
     "events": "^3.3.0",
     "mobx": "^6.4.2",

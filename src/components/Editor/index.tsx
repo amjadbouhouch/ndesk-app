@@ -8,9 +8,10 @@ import { htmlToMarkdown } from 'components/Editor/helpers/turndown'
 // import lowlight from 'lowlight'
 import React from 'react'
 import { PlaceholderPlugin } from './plugins'
+import FloatingMenu from './plugins/FloatingMenu'
 import { Popover } from './Popover'
 // import { pageStore, useCurrentPage } from 'renderer/stores/store'
-
+import './style.css'
 // import { Toolbar } from './Toolbar';
 
 type EditorProps = {
@@ -48,8 +49,8 @@ EditorProps) => {
   const extensions: Extensions = [
     StarterKit.configure({
       ...(withCodeBlockLowlightExtension && { codeBlock: false })
-    }),
-    PlaceholderPlugin
+    })
+    // PlaceholderPlugin
   ]
 
   if (withLinkExtension) {
@@ -135,6 +136,7 @@ EditorProps) => {
   }
   return (
     <div className="flex-1">
+      <FloatingMenu editor={editor} />
       {withPopover ? <Popover editor={editor} /> : null}
       <EditorContent editor={editor} />
     </div>

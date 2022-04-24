@@ -14,7 +14,8 @@ class PagesStore {
       pages: observable,
       selectedPage: observable,
       setPages: action,
-      setSelectedPage: action
+      setSelectedPage: action,
+      updateCurrentPage: action
     })
     this.getAllPages()
     this._db.watchChanges(this._watchDbChanges.bind(this))
@@ -65,6 +66,20 @@ class PagesStore {
 
   setPages(pages: PageItemStore[]) {
     this.pages = pages
+  }
+
+  updateCurrentPage(page: PageItemStore) {
+    // const index = this.pages.findIndex((p) => p._id === page._id)
+    // if (~index) {
+    //   this.setPages(
+    //     this.pages.map((p, pageIndex) => {
+    //       if (pageIndex === index) {
+    //         return page
+    //       }
+    //       return p
+    //     })
+    //   )
+    // }
   }
 }
 

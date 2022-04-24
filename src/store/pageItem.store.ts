@@ -39,6 +39,7 @@ class PageItemStore implements IPage {
 
   setTitle(title?: string) {
     this.title = title || ''
+    this._pagesStore.updateCurrentPage(this)
   }
   //
 }
